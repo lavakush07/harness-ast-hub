@@ -7,6 +7,7 @@
   --accent-scs: #22d3ee;
   --accent-sto: #a78bfa;
   --accent-qwiet: #34d399;
+  --accent-ai: #fb923c;
   --radius: 14px;
   --shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
   font-family: "DM Sans", system-ui, sans-serif;
@@ -73,8 +74,9 @@ body {
   background: linear-gradient(
     135deg,
     var(--accent-scs),
-    var(--accent-sto) 50%,
-    var(--accent-qwiet)
+    var(--accent-sto) 35%,
+    var(--accent-qwiet) 68%,
+    var(--accent-ai)
   );
   flex-shrink: 0;
   box-shadow: var(--shadow);
@@ -183,6 +185,10 @@ body {
   color: var(--accent-qwiet);
 }
 
+.board-title[data-accent="ai"] {
+  color: var(--accent-ai);
+}
+
 .board-meta {
   margin: 0;
   font-size: 0.8rem;
@@ -263,6 +269,10 @@ body {
 
 .link-dot[data-accent="qwiet"] {
   background: var(--accent-qwiet);
+}
+
+.link-dot[data-accent="ai"] {
+  background: var(--accent-ai);
 }
 
 .link-body {
@@ -397,6 +407,16 @@ body {
 
 .btn-accent[data-accent="qwiet"]:hover {
   background: rgba(52, 211, 153, 0.14);
+}
+
+.btn-accent[data-accent="ai"] {
+  border-color: rgba(251, 146, 60, 0.45);
+  color: var(--accent-ai);
+  background: rgba(251, 146, 60, 0.08);
+}
+
+.btn-accent[data-accent="ai"]:hover {
+  background: rgba(251, 146, 60, 0.15);
 }
 
 .btn-icon {

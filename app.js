@@ -95,6 +95,40 @@
     return sections;
   }
 
+  /**
+   * Adds any new default boards (by id) so existing localStorage picks up new cards
+   * without a full reset. Section order follows bookmarks.js defaults.
+   */
+  function mergeNewSectionsFromDefaults(storedSections, defaultSections) {
+    var present = {};
+    storedSections.forEach(function (s) {
+      present[s.id] = true;
+    });
+    var merged = storedSections.slice();
+    var didAdd = false;
+    defaultSections.forEach(function (def) {
+      if (!present[def.id]) {
+        var copy = deepClone(def);
+        ensureLinkIds([copy]);
+        merged.push(copy);
+        didAdd = true;
+      }
+    });
+    var orderMap = {};
+    defaultSections.forEach(function (d, i) {
+      orderMap[d.id] = i;
+    });
+    merged.sort(function (a, b) {
+      var ia = orderMap[a.id];
+      var ib = orderMap[b.id];
+      if (ia !== undefined && ib !== undefined) return ia - ib;
+      if (ia !== undefined) return -1;
+      if (ib !== undefined) return 1;
+      return 0;
+    });
+    return { merged: merged, didAdd: didAdd };
+  }
+
   function loadFromStorage() {
     try {
       var raw = localStorage.getItem(STORAGE_KEY);
@@ -120,9 +154,16 @@
   }
 
   function initState() {
+    var defaults = loadDefaults();
     var stored = loadFromStorage();
-    state.sections = stored || loadDefaults();
     if (!stored) {
+      state.sections = defaults;
+      saveToStorage();
+      return;
+    }
+    var mergeResult = mergeNewSectionsFromDefaults(stored, defaults);
+    state.sections = mergeResult.merged;
+    if (mergeResult.didAdd) {
       saveToStorage();
     }
   }

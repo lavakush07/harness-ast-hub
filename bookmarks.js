@@ -117,4 +117,42 @@ window.HARNESS_BOOKMARKS = [
       },
     ],
   },
+  {
+    id: "ai",
+    accent: "ai",
+    title: "AI learnings",
+    subtitle: "Courses · docs · playbooks",
+    links: [
+      {
+        label: "LangChain docs",
+        href: "https://python.langchain.com/docs/",
+        description: "Orchestration and RAG patterns",
+      },
+      {
+        label: "Prompt engineering guide",
+        href: "https://www.promptingguide.ai/",
+        description: "Techniques and patterns",
+      },
+      {
+        label: "Hugging Face — Learn",
+        href: "https://huggingface.co/learn",
+        description: "NLP and models fundamentals",
+      },
+      {
+        label: "Google AI for Developers",
+        href: "https://ai.google.dev/",
+        description: "Gemini API and tools",
+      },
+      {
+        label: "Anthropic — Claude docs",
+        href: "https://docs.anthropic.com/",
+        description: "API and product guides",
+      },
+      {
+        label: "OpenAI platform docs",
+        href: "https://platform.openai.com/docs",
+        description: "API reference and guides",
+      },
+    ],
+  },
 ];
