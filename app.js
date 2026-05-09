@@ -99,6 +99,19 @@
    * Adds any new default boards (by id) so existing localStorage picks up new cards
    * without a full reset. Section order follows bookmarks.js defaults.
    */
+  function applyDefaultMetadata(sections, defaultSections) {
+    var map = {};
+    defaultSections.forEach(function (d) {
+      map[d.id] = d;
+    });
+    sections.forEach(function (s) {
+      var def = map[s.id];
+      if (def && def.logo && !s.logo) {
+        s.logo = def.logo;
+      }
+    });
+  }
+
   function mergeNewSectionsFromDefaults(storedSections, defaultSections) {
     var present = {};
     storedSections.forEach(function (s) {
@@ -163,6 +176,7 @@
     }
     var mergeResult = mergeNewSectionsFromDefaults(stored, defaults);
     state.sections = mergeResult.merged;
+    applyDefaultMetadata(state.sections, defaults);
     if (mergeResult.didAdd) {
       saveToStorage();
     }
@@ -305,6 +319,21 @@
       var titles = document.createElement("div");
       titles.className = "board-titles";
 
+      if (section.logo) {
+        var logoImg = document.createElement("img");
+        logoImg.className = "board-logo";
+        logoImg.src = section.logo;
+        logoImg.alt = "";
+        logoImg.width = 40;
+        logoImg.height = 40;
+        logoImg.decoding = "async";
+        logoImg.loading = "lazy";
+        titles.appendChild(logoImg);
+      }
+
+      var titleStack = document.createElement("div");
+      titleStack.className = "board-title-stack";
+
       var title = document.createElement("h2");
       title.className = "board-title";
       title.dataset.accent = section.accent;
@@ -314,8 +343,9 @@
       meta.className = "board-meta";
       meta.textContent = section.subtitle || "";
 
-      titles.appendChild(title);
-      titles.appendChild(meta);
+      titleStack.appendChild(title);
+      titleStack.appendChild(meta);
+      titles.appendChild(titleStack);
 
       var addBtn = document.createElement("button");
       addBtn.type = "button";

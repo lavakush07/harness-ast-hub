@@ -71,15 +71,11 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    var(--accent-scs),
-    var(--accent-sto) 35%,
-    var(--accent-qwiet) 68%,
-    var(--accent-ai)
-  );
   flex-shrink: 0;
+  display: block;
+  object-fit: contain;
   box-shadow: var(--shadow);
+  background: var(--bg-elevated);
 }
 
 .site-header h1 {
@@ -158,6 +154,22 @@ body {
 }
 
 .board-titles {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.board-logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  object-fit: contain;
+  margin-top: 0.1rem;
+}
+
+.board-title-stack {
   min-width: 0;
   flex: 1;
 }

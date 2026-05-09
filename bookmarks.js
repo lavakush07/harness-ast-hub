@@ -6,6 +6,7 @@ window.HARNESS_BOOKMARKS = [
   {
     id: "scs",
     accent: "scs",
+    logo: "assets/icon-ssca.svg",
     title: "Harness SCS",
     subtitle: "Supply chain · SSCA",
     links: [
@@ -44,6 +45,7 @@ window.HARNESS_BOOKMARKS = [
   {
     id: "sto",
     accent: "sto",
+    logo: "assets/icon-sto.svg",
     title: "Harness STO",
     subtitle: "Security Testing Orchestration",
     links: [
@@ -82,6 +84,7 @@ window.HARNESS_BOOKMARKS = [
   {
     id: "qwiet",
     accent: "qwiet",
+    logo: "assets/icon-qwiet.svg",
     title: "Qwiet AI · SAST / SCA",
     subtitle: "Harness-native scanners",
     links: [
@@ -120,6 +123,7 @@ window.HARNESS_BOOKMARKS = [
   {
     id: "ai",
     accent: "ai",
+    logo: "assets/icon-ai-learning.svg",
     title: "AI learnings",
     subtitle: "Courses · docs · playbooks",
     links: [
