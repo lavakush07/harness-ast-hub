@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Harness bookmarks · SCS · STO · Qwiet</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <h1>Harness bookmark hub</h1>
+          <p class="tagline">
+            SCS, STO, and Qwiet — one page instead of a dozen tabs.
+          </p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <label class="search-wrap">
+          <span class="sr-only">Filter links</span>
+          <input
+            id="filter"
+            type="search"
+            placeholder="Filter links…"
+            autocomplete="off"
+            spellcheck="false"
+          />
+        </label>
+        <div class="toolbar" role="toolbar" aria-label="Bookmark data">
+          <button type="button" id="btn-reset" class="btn btn-ghost">
+            Reset to defaults
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="boards" class="boards"></main>
+
+    <dialog id="link-dialog" class="modal" aria-labelledby="dialog-title">
+      <form id="link-form" class="modal-form">
+        <h2 id="dialog-title" class="modal-title">Add link</h2>
+        <input type="hidden" name="sectionId" id="form-section-id" />
+        <input type="hidden" name="linkId" id="form-link-id" />
+
+        <label class="field">
+          <span class="field-label">Title</span>
+          <input
+            name="label"
+            id="form-label"
+            type="text"
+            required
+            autocomplete="off"
+            placeholder="e.g. STO overview"
+          />
+        </label>
+        <label class="field">
+          <span class="field-label">URL</span>
+          <input
+            name="href"
+            id="form-href"
+            type="text"
+            required
+            autocomplete="off"
+            placeholder="https://…"
+            spellcheck="false"
+          />
+        </label>
+        <label class="field">
+          <span class="field-label">Description <span class="optional">(optional)</span></span>
+          <textarea
+            name="description"
+            id="form-description"
+            rows="2"
+            placeholder="Short note for yourself"
+          ></textarea>
+        </label>
+
+        <div class="modal-actions">
+          <button type="button" class="btn btn-ghost" id="form-cancel">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-primary" id="form-save">
+            Save
+          </button>
+        </div>
+      </form>
+    </dialog>
+
+    <div
+      id="toast-region"
+      class="toast-region"
+      aria-live="polite"
+      aria-atomic="true"
+    ></div>
+
+    <footer class="site-footer">
+      <p>
+        Changes are saved in this browser (<code>localStorage</code>). Use
+        <strong>Reset to defaults</strong> to reload the list from
+        <code>bookmarks.js</code>.
+      </p>
+    </footer>
+
+    <script src="bookmarks.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
